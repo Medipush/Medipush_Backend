@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+<div class="container">
+    <form action="/medinfoInsert_do" method="post">
+        <div class="form-group">
+            <label for="name">이름</label>
+            <input type="text" id="name" name="name" placeholder="이름"><br>
+            <label for="SSN">SSN</label>
+            <input type="text" id="SSN" name="SSN" placeholder="SSN"><br>
+            <label for="pregnant">임신 여부</label>
+            <input type="checkbox" id="pregnant" name="pregnant"><br>
+            <!-- find the medicine exists in DB -->
+            <!-- multiple input -->
+
+            <label for="prod_name">약 이름</label>
+            <input type="text" id="prod_name" name="prod_name" placeholder="약 이름"><br>
+            아침 : <input type="checkbox" name="session1" value="1"><br>
+            점심 : <input type="checkbox" name="session2" value="1"><br>
+            저녁 : <input type="checkbox" name="session3" value="1"><br>
+        </div>
+        <button type="submit">등록</button>
+    </form>
+</div> <!-- /container -->
+</body>
+</html>
