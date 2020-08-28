@@ -30,6 +30,7 @@ public class PatientController {
 
     @PostMapping("/infoInsert_do")
     public String create(PatientForm form){
+        System.out.println("create start");
         Patient patient = new Patient();
         patient.setName(form.getName());
         patient.setSSN(form.getSSN());
@@ -49,6 +50,7 @@ public class PatientController {
         System.out.println("patient = " + patient.toString());
 
         patientService.save(patient);
+        System.out.println("create end");
         return "redirect:/";
     }
 

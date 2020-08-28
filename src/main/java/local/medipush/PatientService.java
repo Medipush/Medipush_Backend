@@ -22,7 +22,7 @@ public class PatientService {
     @Autowired public MedRepository medRepository;
 
     public void save(Patient patient){
-
+        System.out.println("service save start");
         String med_name = patient.getTake_med().get(0).getProd_name();
         Patient findPatient = patientRepository.findBySSN(patient.getSSN());
 
@@ -44,7 +44,7 @@ public class PatientService {
                 if(d.getDur().equals("병용금기")){
                     for(Medicine m : newList){
                         String oldMed = m.getProd_name();
-                        List<String> oldIngr = medRepository.findByProdName(oldMed).getIngredients();
+                        List<String> oldIngr = medRepository.findByProdName(oldMed).getIngredient();
                         for(String s : oldIngr){
                             if(s.contains(d.getIngr())){
                                 String warn = med_name + "와(과) " + oldMed + "은(는) 같이 복용하지 마십시오.";
@@ -74,6 +74,7 @@ public class PatientService {
             }
         }
         patientRepository.save(patient);
+        System.out.println("service save end");
     }
 
 

@@ -10,7 +10,7 @@ public class MedInfo {
     @Id
     private String id;
     private String prodName;
-    private List<String> ingredients;
+    private List<String> ingredient;
     private List<DURInfo> cautionInfo;
 
     public String getProdName() {
@@ -29,11 +29,12 @@ public class MedInfo {
         this.cautionInfo = cautionInfo;
     }
 
-    public List<String> getIngredients() {
-        return ingredients;
+    public List<String> getIngredient() {
+        return ingredient;
     }
 
-    public void setIngredients(List<String> ingredients) {
-        this.ingredients = ingredients;
+    public void setIngredient(List<String> ingredient) {
+        this.ingredient = ingredient;
     }
+
 }

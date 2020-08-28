@@ -46,8 +46,9 @@ class PatientServiceTest {
 
     @Test
     void find(){
-        String med_name = "가두에정5/10밀리그램";
+        String med_name = "에듀란트정25밀리그램(릴피비린염산염)";
+        patientsService.findMed(med_name);
     }
 
- */
+*/
 }
