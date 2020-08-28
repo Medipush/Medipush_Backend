@@ -61,7 +61,7 @@ public class PatientController {
 
 
     @ResponseBody
-    @RequestMapping("/infoRequest")
+    @RequestMapping(value = "/infoRequest", produces = "text/plain;charset=UTF-8")
     public Patient returnInfo(String SSN){
         return patientService.findInfo(SSN);
     }
