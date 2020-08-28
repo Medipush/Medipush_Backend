@@ -1,32 +1,36 @@
 package local.medipush;
 
 import local.medipush.domain.Medicine;
-import local.medipush.domain.Patients;
+import local.medipush.domain.Patient;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class PatientController {
-    @Autowired PatientsService patientsService = new PatientsService();
+    @Autowired
+    PatientService patientService = new PatientService();
 
     @Autowired
-    public PatientController(PatientsService patientsService) {
-        this.patientsService = patientsService;
+    public PatientController(PatientService patientService) {
+        this.patientService = patientService;
     }
 
     @GetMapping("/")
     public String medInfo(){
-        return "medinfoInsert";
+        return "infoInsert";
     }
 
-    @PostMapping("/medinfoInsert_do")
+    @PostMapping("/infoInsert_do")
     public String create(PatientForm form){
-        Patients patient = new Patients();
+        Patient patient = new Patient();
         patient.setName(form.getName());
         patient.setSSN(form.getSSN());
         patient.setPregnant(form.getPregnant());
@@ -44,8 +48,26 @@ public class PatientController {
 
         System.out.println("patient = " + patient.toString());
 
-        patientsService.save(patient);
+        patientService.save(patient);
         return "redirect:/";
     }
 
+    /**
+     *
+     * medicine validity check
+     *
+     */
+
+
+
+    @ResponseBody
+    @RequestMapping("/infoRequest")
+    public Patient returnInfo(String SSN){
+        return patientService.findInfo(SSN);
+    }
+
+    @RequestMapping("/infoDelete")
+    public void deleteInfo(String SSN, String medName){
+        patientService.deleteInfo(SSN, medName);
+    }
 }

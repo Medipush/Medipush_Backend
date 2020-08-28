@@ -3,10 +3,12 @@ package local.medipush.domain;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-@Document (collection = "patients")
-public class Patients {
+@Document (collection = "patient")
+public class Patient {
     @Id
     private String id;
 
@@ -14,6 +16,7 @@ public class Patients {
     private String name;
     private boolean pregnant;
     private List<Medicine> take_med;
+    private List<String> cautions = new ArrayList<String>();
 
     public String getId() {
         return id;
@@ -55,14 +58,38 @@ public class Patients {
         this.take_med = take_med;
     }
 
+    public void deleteMed(String medName){
+        Iterator<Medicine> it = take_med.iterator();
+        while(it.hasNext()){
+            if(it.next().getProd_name().equals(medName)){
+                it.remove();
+                break;
+            }
+        }
+    }
+
+    public void addCaution(String s) {
+        this.cautions.add(s);
+    }
+    public void deleteCautions(String med){
+        Iterator<String> it = cautions.iterator();
+        while(it.hasNext()){
+            if(it.next().contains(med)){
+                it.remove();
+            }
+        }
+    }
+
+
     @Override
     public String toString() {
-        return "Patients{" +
+        return "Patient{" +
                 "id='" + id + '\'' +
                 ", SSN='" + SSN + '\'' +
                 ", name='" + name + '\'' +
                 ", pregnant=" + pregnant +
                 ", take_med=" + take_med +
+                ", cautions=" + cautions +
                 '}';
     }
 }

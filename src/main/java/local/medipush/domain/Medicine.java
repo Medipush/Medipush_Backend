@@ -1,6 +1,8 @@
 package local.medipush.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Medicine {
     private String prod_name;
@@ -21,7 +23,6 @@ public class Medicine {
     public void setTake_session(boolean[] take_session) {
         this.take_session = take_session;
     }
-
 
     @Override
     public String toString() {

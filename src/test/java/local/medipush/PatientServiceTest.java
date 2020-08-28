@@ -1,8 +1,7 @@
 package local.medipush;
 
 import local.medipush.domain.Medicine;
-import local.medipush.domain.Patients;
-import org.junit.jupiter.api.BeforeEach;
+import local.medipush.domain.Patient;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,19 +10,17 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
-class PatientsServiceTest {
+class PatientServiceTest {
 
-    @Autowired PatientsService patientsService = new PatientsService();
+    @Autowired PatientService patientsService = new PatientService();
 
     @Test
     void save() {
-        Patients patient = new Patients();
+        Patient patient = new Patient();
         Medicine med = new Medicine();
 
-        med.setProd_name("hello");
+        med.setProd_name("helloprod");
         boolean[] ts = {true, false, true};
         med.setTake_session(ts);
 
@@ -31,7 +28,7 @@ class PatientsServiceTest {
         tm.add(med);
 
         patient.setName("kim");
-        patient.setSSN("00101-101");
+        patient.setSSN("1234");
         patient.setPregnant(true);
         patient.setTake_med(tm);
 
@@ -40,5 +37,15 @@ class PatientsServiceTest {
         System.out.println(patientsService);
 
         patientsService.save(patient);
+    }
+
+    @Test
+    void deleteInfo() {
+        patientsService.deleteInfo("12345", "hello");
+    }
+
+    @Test
+    void find(){
+        String med_name = "가두에정5/10밀리그램";
     }
 }
