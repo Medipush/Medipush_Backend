@@ -14,7 +14,7 @@ import java.util.List;
 class PatientServiceTest {
 
     @Autowired PatientService patientsService = new PatientService();
-
+/*
     @Test
     void save() {
         Patient patient = new Patient();
@@ -48,4 +48,6 @@ class PatientServiceTest {
     void find(){
         String med_name = "가두에정5/10밀리그램";
     }
+
+ */
 }
