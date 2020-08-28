@@ -18,6 +18,15 @@ public class Patient {
     private List<Medicine> take_med;
     private List<String> cautions = new ArrayList<String>();
 
+    public List<String> getCautions() {
+        return cautions;
+    }
+
+    public void setCautions(List<String> cautions) {
+        this.cautions = cautions;
+    }
+
+
     public String getId() {
         return id;
     }
@@ -57,6 +66,8 @@ public class Patient {
     public void setTake_med(List<Medicine> take_med) {
         this.take_med = take_med;
     }
+
+
 
     public void deleteMed(String medName){
         Iterator<Medicine> it = take_med.iterator();
