@@ -1,7 +1,6 @@
 package local.medipush.domain;
 
 public class DURInfo {
-
     private String ingr;
     private String dur;
 

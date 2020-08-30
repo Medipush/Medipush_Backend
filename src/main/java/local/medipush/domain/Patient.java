@@ -15,7 +15,7 @@ public class Patient {
     private String SSN;
     private String name;
     private boolean pregnant;
-    private List<Medicine> take_med;
+    private List<Medicine> take_med = new ArrayList<Medicine>();
     private List<String> cautions = new ArrayList<String>();
 
     public List<String> getCautions() {
@@ -67,14 +67,16 @@ public class Patient {
         this.take_med = take_med;
     }
 
+    public void addTake_med(Medicine med){
+        this.take_med.add(med);
+    }
 
 
     public void deleteMed(String medName){
         Iterator<Medicine> it = take_med.iterator();
         while(it.hasNext()){
-            if(it.next().getProd_name().equals(medName)){
+            if(it.next().getProd_name().contains(medName)){
                 it.remove();
-                break;
             }
         }
     }

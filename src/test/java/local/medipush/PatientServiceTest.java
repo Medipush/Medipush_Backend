@@ -1,5 +1,6 @@
 package local.medipush;
 
+import local.medipush.domain.MedInfo;
 import local.medipush.domain.Medicine;
 import local.medipush.domain.Patient;
 import org.junit.jupiter.api.Test;
@@ -50,5 +51,15 @@ class PatientServiceTest {
         patientsService.findMed(med_name);
     }
 
+
+    @Test
+    void search(){
+        String s = "가";
+        List<MedInfo> list =  patientsService.searchMed(s);
+        System.out.println(list.size() + "founded");
+        for(MedInfo m : list){
+            System.out.println(m.getProdName());
+        }
+    }
 */
 }
