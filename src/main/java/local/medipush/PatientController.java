@@ -53,7 +53,7 @@ public class PatientController {
     public String search(@RequestParam("medName") String name, Model model){
         List<MedInfo> medRes = patientService.searchMed(name);
         model.addAttribute("medRes", medRes);
-        return "/searchWindow";
+        return "searchWindow";
     }
 
 
