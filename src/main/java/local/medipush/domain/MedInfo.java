@@ -37,4 +37,15 @@ public class MedInfo {
         this.ingredient = ingredient;
     }
 
+    public String cautionToString() {
+        if(cautionInfo != null) {
+            StringBuffer sb = new StringBuffer();
+            for (DURInfo d : cautionInfo) {
+                sb.append('[').append(d.getDur()).append(": ").append(d.getIngr()).append("] ");
+            }
+            return sb.toString();
+        }
+        else{return "";}
+    }
+
 }

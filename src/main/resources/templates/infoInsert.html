@@ -9,7 +9,7 @@
         #image {width:65%;float:left;text-align:center;padding-top:70px;}
         #input_form {float:right;width:35%;padding-top:70px;}
         .form-group input[type="text"] {
-            height:auto;line-height:normal;padding: .8em .5em;font-family: inherit;border: 1px solid lightgrey;border-radius: 0;width:90%;
+            height:auto;line-height:normal;padding: .8em .5em;font-family: inherit;border: 1px solid lightgrey;border-radius: 0;width:73%;
             outline-style: none;-webkit-appearance: none;-moz-appearance: none;appearance: none; }
         .form-group input[type="button"]{
             height:auto;line-height:normal;padding: .8em .5em;font-family: inherit;border: 1px solid #999;border-radius: 0;
@@ -32,9 +32,11 @@
     <form action="/infoInsert_do" method="post">
         <div class="form-group">
             <input type="text" id="name" name="name" placeholder="이름"><br><br><br>
-            <input type="text" id="SSN" name="SSN" placeholder="주민등록번호"><br><br><br>
+            <input type="text" id="SSN" name="SSN" placeholder="주민등록번호">
+            <input type="button" onclick="searchPatient()" value="환자 검색">
+            <br><br><br>
             <!-- multiple input -->
-            <input type="text" id="prodName" name="prod_name" placeholder="약 이름" style="width:73%;">
+            <input type="text" id="prodName" name="prod_name" placeholder="약 이름">
             <input type="button" onclick="searchMed()" value="약 검색">
             <br><br><br>
             <input type="checkbox" id="session1" name="session1" value="1">
@@ -55,7 +57,12 @@
 <script>
     function searchMed(){
         var elem = document.getElementById("prodName").value;
-        var url = "./searchWindow?medName=" + elem;
+        var url = "./searchMWindow?medName=" + elem;
+        window.open(url, "_blank", "width=1000, height=700, menubar=no, status=no, toolbar=no");
+    }
+    function searchPatient(){
+        var elem = document.getElementById("SSN").value;
+        var url = "./searchPWindow?SSN=" + elem;
         window.open(url, "_blank", "width=1000, height=700, menubar=no, status=no, toolbar=no");
     }
 </script>

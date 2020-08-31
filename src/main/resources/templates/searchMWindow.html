@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>MediPush</title>
+    <style type="text/css">
+    #resultmsg { padding:20px 0px 20px 0px;text-align:center;font-size:30px; }
+    #resulttb { width:90%;margin:auto; }
+    td { padding:1em;border-top:1px solid grey; }
+    th { padding:1em;}
+    input[type="button"]{
+        height:auto;line-height:normal;padding: .8em .5em;font-family: inherit;border: 1px solid #999;border-radius: 0;
+    }
+    a { text-decoration:none;}
+    </style>
+</head>
+<body>
+<div class="container">
+    <div id="resultmsg">검색 결과</div>
+    <div>
+        <table id="resulttb">
+            <thead>
+            <tr>
+                <th>약 이름</th>
+                <th>성분</th>
+                <th>DUR 정보</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="med : ${medRes}">
+                <td><a href="" onclick="select(this)" th:text="${med.prodName}"></a></td>
+                <td th:text="${med.ingredient}"></td>
+                <td th:text="${med.cautionToString()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <div style="text-align:center;">
+        <input type="button" onclick="win_close()" value="창 닫기"></input>
+    </div>
+</div> <!-- /container -->
+<script>
+    function win_close(){
+        window.close();
+        //window.open("", "_self").close();
+    }
+
+    function select(obj){
+        console.log(obj.value);
+        opener.document.getElementById("prodName").value = obj.innerHTML;
+        win_close();
+    }
+</script>
+</body>
+</html>

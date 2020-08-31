@@ -49,11 +49,18 @@ public class PatientController {
         return "redirect:/";
     }
 
-    @GetMapping("/searchWindow")
-    public String search(@RequestParam("medName") String name, Model model){
+    @GetMapping("/searchMWindow")
+    public String searchM(@RequestParam("medName") String name, Model model){
         List<MedInfo> medRes = patientService.searchMed(name);
         model.addAttribute("medRes", medRes);
-        return "searchWindow";
+        return "searchMWindow";
+    }
+
+    @GetMapping("/searchPWindow")
+    public String searchP(@RequestParam("SSN") String ssn, Model model){
+        Patient patientRes = patientService.findInfo(ssn);
+        model.addAttribute("patient", patientRes);
+        return "searchPWindow";
     }
 
 
