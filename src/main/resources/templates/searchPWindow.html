@@ -5,7 +5,8 @@
     <title>MediPush</title>
     <style type="text/css">
     .resultmsg { padding:20px 0px 20px 0px;text-align:center;font-size:30px; }
-    #resulttb { width:90%;margin:auto; }
+    #medres{ width:90%;text-align:center;margin:auto; }
+    .resulttb { width:90%;margin:auto; }
     td { padding:1em;border-top:1px solid grey; }
     th { padding:1em;}
     input[type="button"]{
@@ -18,7 +19,7 @@
 <div class="container">
     <div class="resultmsg">환자 검색 결과</div>
     <div>
-        <table id="resulttb">
+        <table class="resulttb">
             <thead>
             <tr>
                 <th>환자 이름</th>
@@ -28,20 +29,35 @@
             </thead>
             <tbody>
             <tr>
-                <td th:text="${patient.name}"></td>
-                <td th:text="${patient.SSN}"></td>
-                <td th:text="${patient.pregnant}"></td>
+                <td th:text="${patient?.name}"></td>
+                <td th:text="${patient?.SSN}"></td>
+                <td th:text="${patient?.pregnant}"></td>
             </tr>
             </tbody>
         </table>
     </div>
     <div class="resultmsg">복용중인 약</div>
-    <div th:each="med : ${patient.take_med}" style="text-align:center;">
-        <span th:text="${med.prod_name}"></span>
+    <div>
+    <table class="resulttb">
+        <thead>
+        <tr>
+            <th>약 이름</th>
+            <th>성분</th>
+            <th>DUR 정보</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="med : ${medRes}">
+            <td><a href="" onclick="select(this)" th:text="${med.prodName}"></a></td>
+            <td th:text="${med.ingredient}"></td>
+            <td th:text="${med.cautionToString()}"></td>
+        </tr>
+        </tbody>
+    </table>
     </div>
     <br>
     <div style="text-align:center;">
-        <input type="button" onclick="win_close()" value="창 닫기"></input>
+        <input type="button" onclick="win_close()" value="창 닫기">
     </div>
 </div> <!-- /container -->
 <script>

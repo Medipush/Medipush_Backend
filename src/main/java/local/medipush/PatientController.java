@@ -52,14 +52,23 @@ public class PatientController {
     @GetMapping("/searchMWindow")
     public String searchM(@RequestParam("medName") String name, Model model){
         List<MedInfo> medRes = patientService.searchMed(name);
-        model.addAttribute("medRes", medRes);
+        if(medRes != null) {
+            model.addAttribute("medRes", medRes);
+        }
         return "searchMWindow";
     }
 
     @GetMapping("/searchPWindow")
     public String searchP(@RequestParam("SSN") String ssn, Model model){
         Patient patientRes = patientService.findInfo(ssn);
-        model.addAttribute("patient", patientRes);
+        if(patientRes != null) {
+            model.addAttribute("patient", patientRes);
+            List<MedInfo> medRes = new ArrayList<MedInfo>();
+            for(Medicine m : patientRes.getTake_med()){
+                medRes.add(patientService.searchMed(m.getProd_name()).get(0));
+            }
+            model.addAttribute("medRes", medRes);
+        }
         return "searchPWindow";
     }
 
