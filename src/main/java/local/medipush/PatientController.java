@@ -39,7 +39,7 @@ public class PatientController {
              * multiple input
              */
             Medicine med = new Medicine();
-            med.setProd_name(form.getProd_name());
+            med.setProdName(form.getProdName());
             med.setTake_session(form.getTake_session());
 
             patient.addTake_med(med);
@@ -49,25 +49,21 @@ public class PatientController {
         return "redirect:/";
     }
 
-    @GetMapping("/searchMWindow")
-    public String searchM(@RequestParam("medName") String name, Model model){
-        List<MedInfo> medRes = patientService.searchMed(name);
-        if(medRes != null) {
-            model.addAttribute("medRes", medRes);
-        }
-        return "searchMWindow";
-    }
 
     @GetMapping("/searchPWindow")
-    public String searchP(@RequestParam("SSN") String ssn, Model model){
+    public String searchP(@RequestParam("SSN") String ssn, @RequestParam("prodName") String prodName, Model model){
         Patient patientRes = patientService.findInfo(ssn);
         if(patientRes != null) {
             model.addAttribute("patient", patientRes);
-            List<MedInfo> medRes = new ArrayList<MedInfo>();
+            List<MedInfo> takeMedRes = new ArrayList<MedInfo>();
             for(Medicine m : patientRes.getTake_med()){
-                medRes.add(patientService.searchMed(m.getProd_name()).get(0));
+                takeMedRes.add(patientService.searchMed(m.getProdName()).get(0));
             }
-            model.addAttribute("medRes", medRes);
+            model.addAttribute("takeMedRes", takeMedRes);
+        }
+        List<MedInfo> sMedRes = patientService.searchMed(prodName);
+        if(sMedRes != null) {
+            model.addAttribute("sMedRes", sMedRes);
         }
         return "searchPWindow";
     }

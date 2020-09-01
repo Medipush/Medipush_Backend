@@ -5,15 +5,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Medicine {
-    private String prod_name;
+    private String prodName;
     private boolean[] take_session = new boolean[3];
 
-    public String getProd_name() {
-        return prod_name;
+    public String getProdName() {
+        return prodName;
     }
 
-    public void setProd_name(String prod_name) {
-        this.prod_name = prod_name;
+    public void setProdName(String prodName) {
+        this.prodName = prodName;
     }
 
     public boolean[] getTake_session() {
@@ -27,7 +27,7 @@ public class Medicine {
     @Override
     public String toString() {
         return "Medicine{" +
-                "prod_name='" + prod_name + '\'' +
+                "prod_name='" + prodName + '\'' +
                 ", take_session=" + Arrays.toString(take_session) +
                 '}';
     }

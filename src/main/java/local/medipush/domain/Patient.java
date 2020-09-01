@@ -75,7 +75,7 @@ public class Patient {
     public void deleteMed(String medName){
         Iterator<Medicine> it = take_med.iterator();
         while(it.hasNext()){
-            if(it.next().getProd_name().contains(medName)){
+            if(it.next().getProdName().contains(medName)){
                 it.remove();
             }
         }

@@ -10,7 +10,7 @@ public class PatientForm {
         private boolean pregnant;
         private List<Medicine> take_med;
 
-        private String prod_name;
+        private String prodName;
         private boolean session1;
         private boolean session2;
         private boolean session3;
@@ -19,8 +19,8 @@ public class PatientForm {
          * multiple input
          */
 
-        public String getProd_name() {
-            return prod_name;
+        public String getProdName() {
+            return prodName;
         }
 
         public boolean[] getTake_session() {
@@ -84,8 +84,8 @@ public class PatientForm {
             this.session3 = session3;
         }
 
-        public void setProd_name(String prod_name) {
-            this.prod_name = prod_name;
+        public void setProdName(String prodName) {
+            this.prodName = prodName;
         }
 }
 

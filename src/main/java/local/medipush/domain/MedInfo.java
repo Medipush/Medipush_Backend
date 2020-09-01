@@ -41,11 +41,10 @@ public class MedInfo {
         if(cautionInfo != null) {
             StringBuffer sb = new StringBuffer();
             for (DURInfo d : cautionInfo) {
-                sb.append('[').append(d.getDur()).append(": ").append(d.getIngr()).append("] ");
+                sb.append(d.getDur()).append(": ").append(d.getIngr()).append("<br>");
             }
             return sb.toString();
         }
         else{return "";}
     }
-
 }

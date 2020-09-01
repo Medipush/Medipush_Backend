@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -38,22 +39,41 @@
     </div>
     <div class="resultmsg">복용중인 약</div>
     <div>
-    <table class="resulttb">
-        <thead>
-        <tr>
-            <th>약 이름</th>
-            <th>성분</th>
-            <th>DUR 정보</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="med : ${medRes}">
-            <td><a href="" onclick="select(this)" th:text="${med.prodName}"></a></td>
-            <td th:text="${med.ingredient}"></td>
-            <td th:text="${med.cautionToString()}"></td>
-        </tr>
-        </tbody>
-    </table>
+        <table class="resulttb">
+            <thead>
+            <tr>
+                <th style="width:40%;">약 이름</th>
+                <th style="width:30%;">성분</th>
+                <th>DUR 정보</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="tmed : ${takeMedRes}">
+                <td><a href="" th:text="${tmed.prodName}"></a></td>
+                <td name="ingr" th:text="${tmed.ingredient}"></td>
+                <td th:utext="${tmed.cautionToString()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="resultmsg">약 검색 결과</div>
+    <div>
+        <table class="resulttb">
+            <thead>
+            <tr>
+                <th style="width:40%;">약 이름</th>
+                <th style="width:30%;">성분</th>
+                <th>DUR 정보</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="med : ${sMedRes}">
+                <td><a href="" onclick="select(this)" th:text="${med.prodName}"></a></td>
+                <td th:text="${med.ingredient}"></td>
+                <td name="durInfo" th:utext="${med.cautionToString()}"></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
     <br>
     <div style="text-align:center;">
@@ -64,6 +84,38 @@
     function win_close(){
         window.close();
         //window.open("", "_self").close();
+    }
+     function select(obj){
+        console.log(obj.value);
+        opener.document.getElementById("prodName").value = obj.innerHTML;
+        win_close();
+    }
+    window.onload = function(){
+        var preg = document.getElementsByTagName("td")[2].innerText;
+        var ingObj = document.getElementsByName("ingr");
+        var durObj = document.getElementsByName("durInfo");
+        var str = "";
+        for(var i=0;i<ingObj.length;i++){
+            str += ingObj[i].innerText;
+        }
+        for(var i=0;i<durObj.length;i++){
+            var dur = durObj[i].innerHTML;
+            var durh = dur.split("<br>");
+            for(var j=0;j<durh.length - 1;j++){
+                var d = durh[j].split(": ");
+                if(preg == "true" && d[0] == "임부금기"){
+                    var newj = "<span style='color:orange;'>" + d[1] + "</span>";
+                    dur = dur.replace(d[1], newj);
+                }
+                if(str.match(d[1]) != null){
+                    var newj = "<span style='color:red;'>" + d[1] + "</span>";
+                    dur = dur.replace(d[1], newj);
+                    console.log(dur);
+                }
+            }
+            console.log(dur);
+            durObj[i].innerHTML = dur;
+        }
     }
 </script>
 </body>

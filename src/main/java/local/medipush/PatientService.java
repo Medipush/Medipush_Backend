@@ -14,7 +14,7 @@ public class PatientService {
     @Autowired public MedRepository medRepository;
 
     public void save(Patient patient){
-        String med_name = patient.getTake_med().get(0).getProd_name();
+        String med_name = patient.getTake_med().get(0).getProdName();
         Patient findPatient = patientRepository.findBySSN(patient.getSSN());
         List<String> newCautions = new ArrayList<String>();
 
@@ -27,7 +27,7 @@ public class PatientService {
             for(DURInfo d : infos){
                 if(d.getDur().equals("병용금기")){
                     for(Medicine m : newList){
-                        String oldMed = m.getProd_name();
+                        String oldMed = m.getProdName();
                         List<String> oldIngr = medRepository.findByProdName(oldMed).getIngredient();
                         for(String s : oldIngr){
                             if(s.contains(d.getIngr())){
