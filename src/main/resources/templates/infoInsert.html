@@ -32,7 +32,7 @@
     <form action="/infoInsert_do" method="post">
         <div class="form-group">
             <input type="text" id="name" name="name" placeholder="이름" required><br><br><br>
-            <input type="text" id="SSN" name="SSN" placeholder="주민등록번호" pattern="[0-9]{6}-[0-9]{7}" title="000000-0000000" maxlength="14" required>
+            <input type="text" id="SSN" name="SSN" placeholder="주민등록번호" pattern="[0-9]{13}" title="숫자 13자리, '-' 제외" maxlength="13" required>
             <br><br><br>
             <!-- multiple input -->
             <input type="text" id="prodName" name="prodName" placeholder="약 이름" required><br><br>
