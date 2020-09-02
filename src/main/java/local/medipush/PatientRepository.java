@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PatientRepository extends MongoRepository<Patient, String> {
-    public Patient findBySSN(String SSN);
+    public Patient findBySSN(String SSN);   //DB에서 SSN에 해당하는 환자를 반환
 }

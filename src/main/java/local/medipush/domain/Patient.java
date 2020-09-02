@@ -9,14 +9,21 @@ import java.util.List;
 
 @Document (collection = "patient")
 public class Patient {
+    /**
+     * DB에 있는 환자 정보를 가져오기 위한 클래스
+     *  {"SSN":"0009021234567","name":"박테스트","pregnant":false,"take_med":[]}
+     *    환자 식별 정보          환자 이름         환자 임신 여부      복용중인 약
+     *
+     **/
+
+
     @Id
     private String id;
-
-    private String SSN;
-    private String name;
-    private boolean pregnant;
-    private List<Medicine> take_med = new ArrayList<Medicine>();
-    private List<String> cautions = new ArrayList<String>();
+    private String SSN;     //환자 식별 정보 (주민등록번호)
+    private String name;    //환자 이름
+    private boolean pregnant;   //환자 임신 여부
+    private List<MedInPatient> take_med = new ArrayList<MedInPatient>();    //환자가 복용중인 약 List
+    private List<String> cautions = new ArrayList<String>();    //환자에게 적용되는 주의 문구 List
 
     public List<String> getCautions() {
         return cautions;
@@ -25,7 +32,6 @@ public class Patient {
     public void setCautions(List<String> cautions) {
         this.cautions = cautions;
     }
-
 
     public String getId() {
         return id;
@@ -59,21 +65,23 @@ public class Patient {
         this.pregnant = pregnant;
     }
 
-    public List<Medicine> getTake_med() {
+    public List<MedInPatient> getTake_med() {
         return take_med;
     }
 
-    public void setTake_med(List<Medicine> take_med) {
+    public void setTake_med(List<MedInPatient> take_med) {
         this.take_med = take_med;
     }
 
-    public void addTake_med(Medicine med){
+    public void addTake_med(MedInPatient med){
         this.take_med.add(med);
     }
 
 
     public void deleteMed(String medName){
-        Iterator<Medicine> it = take_med.iterator();
+        //MedInPatient(환자가 복용하고 있는 약) List에서 이름이 medName인것 삭제
+
+        Iterator<MedInPatient> it = take_med.iterator();
         while(it.hasNext()){
             if(it.next().getProdName().contains(medName)){
                 it.remove();
@@ -81,13 +89,12 @@ public class Patient {
         }
     }
 
-    public void addCaution(String s) {
-        this.cautions.add(s);
-    }
-    public void deleteCautions(String med){
+    public void deleteCautions(String medName){
+        //Caution String List(환자에게 적용되는 주의 문구)에서 medName이 들어가는 것 삭제
+
         Iterator<String> it = cautions.iterator();
         while(it.hasNext()){
-            if(it.next().contains(med)){
+            if(it.next().contains(medName)){
                 it.remove();
             }
         }

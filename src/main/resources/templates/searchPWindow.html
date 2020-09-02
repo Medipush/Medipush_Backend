@@ -44,14 +44,14 @@
             <tr>
                 <th style="width:40%;">약 이름</th>
                 <th style="width:30%;">성분</th>
-                <th>DUR 정보</th>
+                <th style="width:30%;">DUR 정보</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="tmed : ${takeMedRes}">
                 <td><a href="" th:text="${tmed.prodName}"></a></td>
                 <td name="ingr" th:text="${tmed.ingredient}"></td>
-                <td th:utext="${tmed.cautionToString()}"></td>
+                <td th:utext="${tmed.durToString()}"></td>
             </tr>
             </tbody>
         </table>
@@ -63,14 +63,14 @@
             <tr>
                 <th style="width:40%;">약 이름</th>
                 <th style="width:30%;">성분</th>
-                <th>DUR 정보</th>
+                <th style="width:30%;">DUR 정보</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="med : ${sMedRes}">
                 <td><a href="" onclick="select(this)" th:text="${med.prodName}"></a></td>
                 <td th:text="${med.ingredient}"></td>
-                <td name="durInfo" th:utext="${med.cautionToString()}"></td>
+                <td name="durInfo" th:utext="${med.durToString()}"></td>
             </tr>
             </tbody>
         </table>
@@ -91,6 +91,9 @@
         win_close();
     }
     window.onload = function(){
+        /* 검색한 약에 대한 임부금기 성분과 병용금기 성분을
+                약사에게 보여주기 위해 렌더링을 수행 */
+
         var preg = document.getElementsByTagName("td")[2].innerText;
         var ingObj = document.getElementsByName("ingr");
         var durObj = document.getElementsByName("durInfo");
