@@ -29,7 +29,7 @@ java -jar medipush-0.0.1-SNAPSHOT.jar
 이미 열려있다는 에러가 뜬다면 백그라운드에 서버가 이미 열려있으므로 
 어플리케이션과 웹 프로그램을 그대로 실행하시면 됩니다.
 
-## Amazon EC2 Cloud Server
+## Amazon EC2 Cloud Server - Medipush Web program
 
 👉 [Link](http://ec2-13-124-201-28.ap-northeast-2.compute.amazonaws.com:8080/)
 
