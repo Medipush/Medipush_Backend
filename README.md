@@ -26,7 +26,8 @@ cd ./build/libs/
 
 java -jar medipush-0.0.1-SNAPSHOT.jar
 ```
-이미 열려있다는 에러가 뜬다면 그대로 진행하시면 됩니다.
+이미 열려있다는 에러가 뜬다면 백그라운드에 서버가 이미 열려있으므로 
+어플리케이션과 웹 프로그램을 그대로 실행하시면 됩니다.
 
 ## Amazon EC2 Cloud Server
 
