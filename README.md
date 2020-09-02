@@ -26,6 +26,7 @@ cd ./build/libs/
 
 java -jar medipush-0.0.1-SNAPSHOT.jar
 ```
+이미 열려있다는 에러가 뜬다면 그대로 진행하시면 됩니다.
 
 ## Amazon EC2 Cloud Server
 
